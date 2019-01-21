@@ -1,0 +1,20 @@
+image: romeupalos/noip:latest
+manifests:
+  - image: romeupalos/noip:linux-armhf
+    platform:
+      architecture: arm
+      Variant: v7
+      os: linux
+  - image: romeupalos/noip:linux-aarch64
+    platform:
+      architecture: arm64
+      Variant: v8
+      os: linux
+  - image: romeupalos/noip:linux-x86_64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: romeupalos/noip:linux-x86
+    platform:
+      architecture: 386
+      os: linux
