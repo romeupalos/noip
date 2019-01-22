@@ -2,6 +2,7 @@ NoIP
 ======
 
 [![Build Status](https://travis-ci.org/romeupalos/noip.svg?branch=master)](https://travis-ci.org/romeupalos/noip)
+[![Docker Stats](https://images.microbadger.com/badges/image/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
 [![Docker Pulls](	https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 [![Docker Stars](	https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 [![License](	https://img.shields.io/github/license/romeupalos/noip.svg)](LICENSE)
