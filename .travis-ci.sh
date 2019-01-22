@@ -1,7 +1,13 @@
 # add docker image
 apk add --no-cache docker && \
+
 # build image
-docker build -t romeupalos/noip:$OS-$ARCH . && \
+docker build \
+  -t romeupalos/noip:$OS-$ARCH \
+  --build-arg VCS_REF=$(git rev-parse --short HEAD) \
+  --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+  . && \
+
 # test image
 NOIP_VERSION=$(docker run --rm \
   romeupalos/noip \
@@ -9,7 +15,9 @@ NOIP_VERSION=$(docker run --rm \
   grep -E "^Version" |
   cut -d"-" -f2) && \
 
-docker tag romeupalos/noip:$ARCH romeupalos/noip:$NOIP_VERSION-$OS-$ARCH
+# TODO: Tag with NoIP version
+# docker tag romeupalos/noip:$ARCH romeupalos/noip:$NOIP_VERSION-$OS-$ARCH
+
 # print version and architecture for logging purposes
 echo Built version: $NOIP_VERSION && \
 uname -a && \
