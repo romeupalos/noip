@@ -13,6 +13,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.license="MIT" \
       org.label-schema.schema-version="1.0"
 
+ADD ./docker-entry.sh /bin/
+
 RUN apk add --no-cache make g++ ca-certificates wget &&  \
     wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz && \
     update-ca-certificates && \
@@ -22,6 +24,7 @@ RUN apk add --no-cache make g++ ca-certificates wget &&  \
     cp noip2 /usr/bin && \
     cd .. && \
     rm -rf * && \
-    apk del make g++ ca-certificates wget
+    apk del make g++ ca-certificates wget && \
+    chmod +x /bin/docker-entry.sh
 
-CMD [ "/usr/bin/noip2" ]
+ENTRYPOINT [ "/bin/docker-entry.sh" ]

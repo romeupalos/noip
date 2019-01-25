@@ -36,6 +36,7 @@ script:
     -e "DOCKER_USER=$DOCKER_USER"
     -e "DOCKER_PASS=$DOCKER_PASS"
     -e "OS=$OS"
+    -e "VCS_REF=$(git rev-parse --short HEAD)"
     multiarch/alpine:$ARCH-$ALPINE_VERSION
     /bin/sh ./.travis-ci.sh
 

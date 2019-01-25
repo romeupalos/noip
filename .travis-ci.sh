@@ -4,7 +4,7 @@ apk add --no-cache docker && \
 # build image
 docker build \
   -t romeupalos/noip:$OS-$ARCH \
-  --build-arg VCS_REF=$(git rev-parse --short HEAD) \
+  --build-arg VCS_REF=$VCS_REF \
   --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
   . && \
 

@@ -2,10 +2,12 @@ NoIP
 ======
 
 [![Build Status](https://travis-ci.org/romeupalos/noip.svg?branch=master)](https://travis-ci.org/romeupalos/noip)
-[![Docker Stats](https://images.microbadger.com/badges/image/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
-[![Docker Pulls](	https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
-[![Docker Stars](	https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 [![License](	https://img.shields.io/github/license/romeupalos/noip.svg)](LICENSE)
+
+[![Image Details](https://images.microbadger.com/badges/image/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
+[![Docker Pulls](	https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
+[![Last commit](	https://images.microbadger.com/badges/commit/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
+[![Docker Stars](	https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 
 ## What is NoIP?
 
@@ -40,7 +42,55 @@ This is multi architecture docker image for the [NoIP](https://www.noip.com) DUC
  * i386
 
 ## Quick Reference
-TBD
+
+### Creating the configuration file
+In order to create the configuration file (i.e. `no-ip2.conf`), run the following command
+```
+docker run -it --rm -v $(pwd):/usr/local/etc romeupalos/noip -C
+```
+An interactive wizard will ask every necessary information and it will generate the configuration file
+
+### Running
+
+#### Using a configuration file (recommended)
+```
+docker run -d -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw romeupalos/noip -d
+```
+
+#### Using noip2 command line
+
+Program usage from noip2 help:
+
+```
+USAGE: noip2 [ -C [ -F][ -Y][ -U #min]
+	[ -u username][ -p password][ -x progname]]
+	[ -c file][ -d][ -D pid][ -i addr][ -S][ -M][ -h]
+
+Version Linux-2.1.9
+Options: -C               create configuration data
+         -F               force NAT off
+         -Y               select all hosts/groups
+         -U minutes       set update interval
+         -u username      use supplied username
+         -p password      use supplied password
+         -x executable    use supplied executable
+         -c config_file   use alternate data path
+         -d               increase debug verbosity
+         -D processID     toggle debug flag for PID
+         -i IPaddress     use supplied address
+         -I interface     use supplied interface
+         -S               show configuration data
+         -M               permit multiple instances
+         -K processID     terminate instance PID
+         -z               activate shm dump code
+         -h               help (this text)
+[romeupalos@khronos <0> 00:16:06 Fri Jan 25
+```
+
+Example
+```
+docker run -d -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw romeupalos/noip -d -u <username> -p <password> -U [time-invtrval]
+```
 
 ## Author
 Romeu Palos de Gouvêa [romeupalos@gmail.com](mailto:romeupalos@gmail.com)
