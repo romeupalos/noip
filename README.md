@@ -17,7 +17,7 @@ There is client to update the dynamic DNS IP called DUC (Dynamic Update Client).
 
 From DUC [Download page](https://www.noip.com/download):
 
->Our Dynamic DNS Update Client continually checks for IP address changes in the background and automatically updates the DNS at No-IP whenever it changes.
+> Our Dynamic DNS Update Client continually checks for IP address changes in the background and automatically updates the DNS at No-IP whenever it changes.
 >
 > ✔ Command Line Interface
 >
@@ -46,7 +46,9 @@ This is multi architecture docker image for the [NoIP](https://www.noip.com) DUC
 ### Creating the configuration file
 In order to create the configuration file (i.e. `no-ip2.conf`), run the following command
 ```
-docker run -it --rm -v $(pwd):/usr/local/etc romeupalos/noip -C
+docker run -it --rm \
+  -v $(pwd):/usr/local/etc \
+  romeupalos/noip -C
 ```
 An interactive wizard will ask every necessary information and it will generate the configuration file
 
@@ -54,7 +56,9 @@ An interactive wizard will ask every necessary information and it will generate 
 
 #### Using a configuration file (recommended)
 ```
-docker run -d -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw romeupalos/noip -d
+docker run -d \
+  -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw \
+  romeupalos/noip -d
 ```
 
 #### Using noip2 command line
@@ -84,12 +88,16 @@ Options: -C               create configuration data
          -K processID     terminate instance PID
          -z               activate shm dump code
          -h               help (this text)
-[romeupalos@khronos <0> 00:16:06 Fri Jan 25
 ```
 
 Example
 ```
-docker run -d -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw romeupalos/noip -d -u <username> -p <password> -U [time-invtrval]
+docker run -d \
+  -v $(pwd)/no-ip2.conf:/usr/local/etc/no-ip2.conf:rw \
+  romeupalos/noip -d \
+  -u <username> \
+  -p <password> \
+  -U [time-interval]
 ```
 
 ## Author
