@@ -5,53 +5,54 @@ services:
 
 language: bash
 
-env:
-  global:
-  - ALPINE_VERSION: v3.8
-  matrix:
-  - OS: linux
-    ARCH: armhf
-  - OS: linux
-    ARCH: aarch64
-  - OS: linux
-    ARCH: x86_64
-  - OS: linux
-    ARCH: i386
-
-stage: Build Docker Images
-script:
-  - docker run
-    --rm
-    --privileged
-    multiarch/qemu-user-static:register
-    --reset
-  - docker run
-    --rm
-    -v /var/run/docker.sock:/var/run/docker.sock
-    -v $(pwd):/workdir
-    -w /workdir
-    --privileged
-    -e "TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-    -e "TRAVIS_BRANCH=$TRAVIS_BRANCH"
-    -e "DOCKER_USER=$DOCKER_USER"
-    -e "DOCKER_PASS=$DOCKER_PASS"
-    -e "OS=$OS"
-    -e "VCS_REF=$(git rev-parse --short HEAD)"
-    multiarch/alpine:$ARCH-$ALPINE_VERSION
-    /bin/sh ./.travis-ci.sh
+script: &build
+  - ./prepare-qemu.sh
+  - ./build-docker-image.sh
 
 jobs:
   include:
+    - stage: Build Docker Images
+      name: arm32v6 on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: arm
+
+    - stage: Build Docker Images
+      name: arm64v8 on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: aarch64
+
+    - stage: Build Docker Images
+      name: amd64 on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: x86_64
+
+    - stage: Build Docker Images
+      name: i386 on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: i386
+
+    - stage: Build Docker Images
+      name: s390x on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: s390x
+
+    - stage: Build Docker Images
+      name: ppc64le on linux
+      script: *build
+      env:
+        - OS: linux
+          ARCH: ppc64le
+
     - stage: Add Docker Main Image Manifest
       script:
-        - docker run
-          --rm
-          -v $(pwd):/workdir
-          -w /workdir
-          weshigbee/manifest-tool
-          --username "$DOCKER_USER"
-          --password "$DOCKER_PASS"
-          push from-spec manifest.yml
-      env:
-        - ARCH: none
-          OS: none
+        - ./create-manifest.sh

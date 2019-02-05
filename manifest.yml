@@ -1,20 +1,28 @@
-image: romeupalos/noip:latest
+image: romeupalos/noip:#TAG#
 manifests:
-  - image: romeupalos/noip:linux-armhf
+  - image: romeupalos/noip:#VERSION#arm32v6
     platform:
       architecture: arm
       Variant: v7
       os: linux
-  - image: romeupalos/noip:linux-aarch64
+  - image: romeupalos/noip:#VERSION#arm64v8
     platform:
       architecture: arm64
       Variant: v8
       os: linux
-  - image: romeupalos/noip:linux-x86_64
+  - image: romeupalos/noip:#VERSION#amd64
     platform:
       architecture: amd64
       os: linux
-  - image: romeupalos/noip:linux-x86
+  - image: romeupalos/noip:#VERSION#i386
     platform:
       architecture: 386
+      os: linux
+  - image: romeupalos/noip:#VERSION#ppc64le
+    platform:
+      architecture: ppc64le
+      os: linux
+  - image: romeupalos/noip:#VERSION#s390x
+    platform:
+      architecture: s390x
       os: linux

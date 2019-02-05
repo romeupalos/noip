@@ -36,10 +36,12 @@ From DUC [Download page](https://www.noip.com/download):
 This is multi architecture docker image for the [NoIP](https://www.noip.com) DUC (Dynamic Update Client)
 
 ### Supported Architectures
- * armhf
- * aarch64
- * x86_64
+ * arm32v6
+ * arm64v8
+ * amd64
  * i386
+ * s390x
+ * ppc64le
 
 ## Quick Reference
 
