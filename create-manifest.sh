@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
+. functions.sh
+
 function create_manifest() {
   docker run \
   --rm \
@@ -13,7 +15,7 @@ function create_manifest() {
 }
 
 if [[ "${TRAVIS_PULL_REQUEST:-}" == "false" ]] && [[ "${TRAVIS_BRANCH:-}" == "master" ]]; then
-  VERSION=$(./get_noip_duc.sh)
+  VERSION=$(get_noip_duc)
   EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then
     # Manifest for latest
