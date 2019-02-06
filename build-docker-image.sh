@@ -18,6 +18,7 @@ docker build \
   --build-arg ARCH=$(get_arch "${ARCH}") \
   --build-arg VCS_REF=$(git rev-parse --short HEAD) \
   --build-arg QEMU=qemu-${ARCH}-static \
+  --build-arg VERSION=${VERSION} \
   .
 
 # test image
