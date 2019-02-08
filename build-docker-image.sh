@@ -35,7 +35,7 @@ docker tag \
 
 if [[ "${TRAVIS_PULL_REQUEST:-}" == "false" ]] && [[ "${TRAVIS_BRANCH:-}" == "master" ]]; then
   EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
-  if [ "$EXISTS" == "false" ]; then
+  if [ "$EXISTS" == "false" ] || [ "$TRAVIS_EVENT_TYPE" != "cron" ]; then
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
     docker push romeupalos/noip
   fi

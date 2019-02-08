@@ -1,10 +1,9 @@
-ARG BUILD_DATE
-ARG VCS_REF
+# This is a multi stage Dockefile.
+# This stage will be discarded after the build
+
 ARG ARCH
 ARG QEMU
 
-# This is a multi stage Dockefile.
-# This stage will be discarded after the build
 FROM $ARCH/alpine:latest as intermediate
 
 WORKDIR /usr/src/app
@@ -21,6 +20,10 @@ RUN apk add --no-cache make g++ ca-certificates wget &&  \
 
 FROM $ARCH/alpine:latest
 
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
 # Build-time metadata as defined at http://label-schema.org
 LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.name="NoIP" \
@@ -28,7 +31,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://github.com/romeupalos/noip" \
     org.label-schema.license="MIT" \
-    org.label-schema.version="$VERSION" \
+    org.label-schema.version=$VERSION \
     org.label-schema.schema-version="1.0"
 
 COPY ./docker-entry.sh /bin/
