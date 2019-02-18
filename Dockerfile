@@ -12,7 +12,8 @@ ADD $QEMU /usr/bin
 
 COPY . /usr/src/app
 
-RUN apk add --no-cache make g++ ca-certificates wget &&  \
+RUN apk add --no-cache make g++ ca-certificates wget shadow &&  \
+    useradd -s /bin/sh noipuser && \
     echo "Building on arch: $(uname -m)" && \
     cd $(find . -maxdepth 1 -mindepth 1 -type d) && \
     make && \
@@ -37,5 +38,10 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 COPY ./docker-entry.sh /bin/
 
 COPY --from=intermediate /usr/bin/noip2 /usr/bin/
+COPY --from=intermediate /etc/group /etc/
+COPY --from=intermediate /etc/shadow /etc/
+COPY --from=intermediate /etc/passwd /etc/
+
+USER noipuser
 
 ENTRYPOINT [ "/bin/docker-entry.sh" ]
