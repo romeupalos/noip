@@ -107,6 +107,12 @@ docker run -d \
   -U [time-interval]
 ```
 
+## Donate
+If you like this image, or if it helped you in any way, you could give me a cup of coffee :)
+
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9VEGSAE5YFDT6&source=url)
+
 ## Author
 Romeu Palos de Gouvêa [romeupalos@gmail.com](mailto:romeupalos@gmail.com)
 
