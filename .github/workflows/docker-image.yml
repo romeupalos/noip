@@ -1,0 +1,57 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Build the Docker image for arm32v6
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: arm
+        
+    - name: Build the Docker image for arm64v8
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: x86_64
+        
+    - name: Build the Docker image for amd64
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: i386
+        
+    - name: Build the Docker image for i386
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: s390x
+        
+    - name: Build the Docker image for s390x
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: aarch64
+        
+    - name: Build the Docker image for ppc64le
+      run: ./prepare-qemu.sh && ./build-docker-image.sh
+      env:
+        OS: linux
+        ARCH: ppc64le
+        
+    - name: Add Docker Main Image Manifest
+      run: ./create-manifest.sh
+      
