@@ -41,6 +41,9 @@ FULL_VERSION=alpine${ALPINE_VERSION}-${VERSION}-$(get_arch "$ARCH")
 docker tag \
   romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
   romeupalos/noip:${FULL_VERSION} \
+
+docker tag \
+  romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
   romeupalos/noip:$(get_arch "$ARCH")
 
 if [[ "${TRAVIS_PULL_REQUEST:-}" == "false" ]] && [[ "${TRAVIS_BRANCH:-}" == "master" ]]; then
