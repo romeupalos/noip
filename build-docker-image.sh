@@ -32,7 +32,7 @@ NOIP_VERSION=$(docker run --rm \
 ALPINE_VERSION=$(docker run --rm \
   -v $(pwd)/qemu-${ARCH}-static:/usr/bin/qemu-${ARCH}-static \
   romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
-  at /etc/alpine-release |
+  cat /etc/alpine-release |
   tr -d '\n'
 )
 
