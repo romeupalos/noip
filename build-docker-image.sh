@@ -50,6 +50,6 @@ if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}"
   EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$FULL_VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
-    docker push romeupalos/noip
+    docker push romeupalos/noip:${VERSION}-$(get_arch "$ARCH")
   fi
 fi
