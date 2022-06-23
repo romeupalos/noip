@@ -29,12 +29,22 @@ NOIP_VERSION=$(docker run --rm \
   grep -E "^Version" |
   cut -d"-" -f2)
 
+ALPINE_VERSION=$(docker run --rm \
+  -v $(pwd)/qemu-${ARCH}-static:/usr/bin/qemu-${ARCH}-static \
+  romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
+  at /etc/alpine-release |
+  tr -d '\n'
+)
+
+FULL_VERSION=alpine${ALPINE_VERSION}-${VERSION}-$(get_arch "$ARCH")
+
 docker tag \
   romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
+  romeupalos/noip:${FULL_VERSION} \
   romeupalos/noip:$(get_arch "$ARCH")
 
 if [[ "${TRAVIS_PULL_REQUEST:-}" == "false" ]] && [[ "${TRAVIS_BRANCH:-}" == "master" ]]; then
-  EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
+  EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$FULL_VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ] || [ "$TRAVIS_EVENT_TYPE" != "cron" ]; then
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
     docker push romeupalos/noip
