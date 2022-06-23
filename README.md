@@ -1,7 +1,7 @@
 NoIP
 ======
 
-[![Build Status](https://github.com/romeupalos/noip/actions/workflows/docker-image/badge.svg)](https://travis-ci.com/romeupalos/noip)
+[![Build Status](https://github.com/romeupalos/noip/actions/workflows/docker-image.yml/badge.svg)]
 [![License](	https://img.shields.io/github/license/romeupalos/noip.svg)](LICENSE)
 
 [![Docker Pulls](	https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
