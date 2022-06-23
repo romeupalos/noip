@@ -7,7 +7,7 @@ TARGETS=${ARCH}-${OS}-user
 echo "VERSION: $VERSION"
 echo "TARGETS: $TARGETS"
 
-# apt update
+sudo apt update
 sudo apt install -y wget lbzip2 python3 make ninja-build gcc pkg-config libglib2.0-dev
 
 wget -c "http://wiki.qemu-project.org/download/qemu-$VERSION.tar.bz2"
