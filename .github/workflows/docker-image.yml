@@ -68,4 +68,7 @@ jobs:
 
     - name: Add Docker Main Image Manifest
       run: ./create-manifest.sh
+      env:
+        DOCKER_USER: ${{ secrets.DockerUser }}
+        DOCKER_PASS: ${{ secrets.DockerPass }}
 
