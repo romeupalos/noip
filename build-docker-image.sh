@@ -46,7 +46,7 @@ docker tag \
   romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
   romeupalos/noip:$(get_arch "$ARCH")
 
-if [[ "${GITHUB_EVENT_NAME:-}" == "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
+if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
   EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$FULL_VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin

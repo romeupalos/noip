@@ -14,7 +14,7 @@ function create_manifest() {
   push from-spec manifest-tmp.yml
 }
 
-if [[ "${GITHUB_EVENT_NAME:-}" == "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
+if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
   VERSION=$(get_noip_duc)
   EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then

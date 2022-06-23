@@ -7,6 +7,9 @@ NoIP
 [![Docker Pulls](https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 [![Docker Stars](https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 
+![issues](https://img.shields.io/github/issues/romeupalos/noip?style=flat-square)
+![stars](https://img.shields.io/github/stars/romeupalos/noip?style=flat-square)
+![forks](https://img.shields.io/github/forks/romeupalos/noip?style=flat-square)
 ## Useful links
 * [Docker Hub](https://hub.docker.com/r/romeupalos/noip)
 * [GitHub](https://github.com/romeupalos/noip)
