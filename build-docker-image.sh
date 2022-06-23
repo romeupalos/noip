@@ -52,5 +52,6 @@ if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}"
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
     docker push romeupalos/noip:${VERSION}-$(get_arch "$ARCH")
     docker push "romeupalos/noip:${FULL_VERSION}"
+    echo ""
   fi
 fi

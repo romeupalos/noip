@@ -16,7 +16,7 @@ function create_manifest() {
 
 if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
   VERSION=$(get_noip_duc)
-  EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
+  EXISTS=$(curl --silent -f -lSL "https://hub.docker.com/v2/repositories/romeupalos/noip/tags?page_size=500" | jq "[.results | .[] | .name == \"$VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then
     # Manifest for latest
     cp manifest.yml manifest-tmp.yml
