@@ -47,9 +47,10 @@ docker tag \
   romeupalos/noip:$(get_arch "$ARCH")
 
 if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}" == "master" ]]; then
-  EXISTS=$(curl --silent -f -lSL https://hub.docker.com/v2/repositories/romeupalos/noip/tags | jq "[.results | .[] | .name == \"$FULL_VERSION\"] | any" -r)
+  EXISTS=$(curl --silent -f -lSL "https://hub.docker.com/v2/repositories/romeupalos/noip/tags?page_size=500" | jq "[.results | .[] | .name == \"$FULL_VERSION\"] | any" -r)
   if [ "$EXISTS" == "false" ]; then
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
     docker push romeupalos/noip:${VERSION}-$(get_arch "$ARCH")
+    docker push "romeupalos/noip:${FULL_VERSION}"
   fi
 fi
