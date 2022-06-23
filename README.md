@@ -3,13 +3,13 @@ NoIP
 
 ![Build Status](https://github.com/romeupalos/noip/actions/workflows/docker-image.yml/badge.svg)
 [![License](https://img.shields.io/github/license/romeupalos/noip.svg)](LICENSE)
+![issues](https://img.shields.io/github/issues/romeupalos/noip?style=flat-square)
+![stars](https://img.shields.io/github/stars/romeupalos/noip?style=flat-square)
+![forks](https://img.shields.io/github/forks/romeupalos/noip?style=flat-square)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 [![Docker Stars](https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 
-![issues](https://img.shields.io/github/issues/romeupalos/noip?style=flat-square)
-![stars](https://img.shields.io/github/stars/romeupalos/noip?style=flat-square)
-![forks](https://img.shields.io/github/forks/romeupalos/noip?style=flat-square)
 ## Useful links
 * [Docker Hub](https://hub.docker.com/r/romeupalos/noip)
 * [GitHub](https://github.com/romeupalos/noip)
