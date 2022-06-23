@@ -31,9 +31,9 @@ NOIP_VERSION=$(docker run --rm \
 
 ALPINE_VERSION=$(docker run --rm \
   -v $(pwd)/qemu-${ARCH}-static:/usr/bin/qemu-${ARCH}-static \
+  --entrypoint /bin/sh \
   romeupalos/noip:${VERSION}-$(get_arch "$ARCH") \
-  cat /etc/alpine-release |
-  tr -d '\n'
+  -c 'cat /etc/alpine-release | tr -d "\n"'
 )
 
 FULL_VERSION=alpine${ALPINE_VERSION}-${VERSION}-$(get_arch "$ARCH")
@@ -52,6 +52,5 @@ if [[ "${GITHUB_EVENT_NAME:-}" != "pull_request" ]] && [[ "${GITHUB_REF_NAME:-}"
     echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
     docker push romeupalos/noip:${VERSION}-$(get_arch "$ARCH")
     docker push "romeupalos/noip:${FULL_VERSION}"
-    echo ""
   fi
 fi
