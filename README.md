@@ -1,18 +1,15 @@
 NoIP
 ======
 
-[![Build Status](https://travis-ci.org/romeupalos/noip.svg?branch=master)](https://travis-ci.org/romeupalos/noip)
+[![Build Status](https://api.travis-ci.com/romeupalos/noip.svg?branch=master)](https://travis-ci.com/romeupalos/noip)
 [![License](	https://img.shields.io/github/license/romeupalos/noip.svg)](LICENSE)
 
-[![Image Details](https://images.microbadger.com/badges/image/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
 [![Docker Pulls](	https://img.shields.io/docker/pulls/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
-[![Last commit](	https://images.microbadger.com/badges/commit/romeupalos/noip.svg)](https://microbadger.com/images/romeupalos/noip)
 [![Docker Stars](	https://img.shields.io/docker/stars/romeupalos/noip.svg)](https://hub.docker.com/r/romeupalos/noip)
 
 ## Useful links
 * [Docker Hub](https://hub.docker.com/r/romeupalos/noip)
 * [GitHub](https://github.com/romeupalos/noip)
-* [MicroBadger](https://microbadger.com/images/romeupalos/noip)
 
 ## What is NoIP?
 
@@ -48,13 +45,13 @@ This is multi architecture docker image for the [NoIP](https://www.noip.com) DUC
  * s390x
  * ppc64le
 
-## Quick Reference
+## Getting Started
 
 ### Creating the configuration file
 In order to create the configuration file (i.e. `no-ip2.conf`), run the following command
 ```
 docker run -it --rm \
-  -v $(pwd):/usr/local/etc \
+  -v $(pwd):/usr/local/etc:rw \
   romeupalos/noip -C
 ```
 An interactive wizard will ask every necessary information and it will generate the configuration file
